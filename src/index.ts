@@ -19,10 +19,13 @@ import { utcNow, toISOString, parseISO } from './utils/date.js';
 import { normalizeUrl, getHost } from './utils/url.js';
 import { maybeFixMojibake } from './utils/text.js';
 import { makeItemId } from './utils/hash.js';
-import { createAllFetchers, runFetcher, fetchOpmlRss, fetchWaytoagiRecent7d } from './fetchers/index.js';
+import { runFetcher, fetchOpmlRss, fetchRssFeeds, fetchWaytoagiRecent7d } from './fetchers/index.js';
 import { isAiRelated, dedupeItemsByTitleUrl, normalizeAihubTodayRecords } from './filters/index.js';
 import { addBilingualFields, loadTitleZhCache, cacheToPojo } from './translate/index.js';
 import { writeJson } from './output/index.js';
+import { PlatformDatabase } from './platform/database.js';
+import { bootstrapPlatformDatabase } from './platform/opml-import.js';
+import { createFetcherFromTemplate } from './platform/template-registry.js';
 
 function eventTime(record: ArchiveItem): Date | null {
   if (record.site_id === 'opmlrss') {
@@ -117,16 +120,19 @@ async function main(): Promise<number> {
   const titleCachePath = join(outputDir, 'title-zh-cache.json');
 
   const archive = await loadArchive(archivePath);
+  const platformDb = new PlatformDatabase();
+  await bootstrapPlatformDatabase(platformDb, resolve(rssOpml));
 
-  const fetchers = createAllFetchers();
+  const fetchers = platformDb
+    .getActiveNonRssSources()
+    .map((source) => createFetcherFromTemplate(source.template_key, source))
+    .filter((fetcher) => fetcher !== null);
   const limit = pLimit(5);
 
   console.log('');
   console.log('📡 Fetching from built-in sources...');
 
-  const fetchResults = await Promise.all(
-    fetchers.map((f) => limit(() => runFetcher(f, now, true)))
-  );
+  const fetchResults = await Promise.all(fetchers.map((f) => limit(() => runFetcher(f, now, true))));
 
   const rawItems: RawItem[] = [];
   const statuses: FetchStatus[] = [];
@@ -136,10 +142,52 @@ async function main(): Promise<number> {
     statuses.push(status);
   }
 
+  const fetchedAtForBuiltins = toISOString(now) ?? new Date().toISOString();
+  const activeNonRssSources = platformDb.getActiveNonRssSources();
+  for (const source of activeNonRssSources) {
+    const status = fetchResults.find(
+      (item) => item.status.site_id === source.id || item.status.site_id === source.template_key
+    );
+    if (!status) continue;
+    platformDb.updateSourceFetchStatus(source.id, {
+      fetchedAt: fetchedAtForBuiltins,
+      status: status.status.ok ? 'success' : 'failed',
+      error: status.status.error,
+    });
+  }
+
   let rssFeedStatuses: RssFeedStatus[] = [];
   const opmlPath = resolve(rssOpml);
 
-  if (existsSync(opmlPath)) {
+  const dbRssSources = platformDb.getActiveRssSources();
+
+  if (dbRssSources.length > 0) {
+    console.log('');
+    console.log(`📰 Fetching RSS from database (${dbRssSources.length} sources)...`);
+    const { items: rssItems, summaryStatus, feedStatuses } = await fetchRssFeeds(
+      now,
+      dbRssSources.map((source) => ({
+        sourceId: source.id,
+        title: source.name,
+        xmlUrl: source.config.feedUrl,
+        htmlUrl: source.config.htmlUrl || source.base_url,
+      })),
+      true
+    );
+    rawItems.push(...rssItems);
+    statuses.push(summaryStatus);
+    rssFeedStatuses = feedStatuses;
+
+    const fetchedAt = toISOString(now) ?? new Date().toISOString();
+    for (const feedStatus of feedStatuses) {
+      if (!feedStatus.source_record_id) continue;
+      platformDb.updateSourceFetchStatus(feedStatus.source_record_id, {
+        fetchedAt,
+        status: feedStatus.ok ? 'success' : 'failed',
+        error: feedStatus.error,
+      });
+    }
+  } else if (existsSync(opmlPath)) {
     console.log('');
     console.log(`📰 Fetching OPML RSS from ${opmlPath}...`);
     try {

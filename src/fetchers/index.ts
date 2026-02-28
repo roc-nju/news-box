@@ -9,7 +9,7 @@ export { AiHubTodayFetcher } from './aihubtoday.js';
 export { AiBaseFetcher } from './aibase.js';
 export { AiHotFetcher } from './aihot.js';
 export { NewsNowFetcher } from './newsnow.js';
-export { fetchOpmlRss } from './opml-rss.js';
+export { fetchOpmlRss, fetchRssFeeds } from './opml-rss.js';
 export { fetchWaytoagiRecent7d } from './waytoagi.js';
 
 import type { Fetcher } from '../types.js';

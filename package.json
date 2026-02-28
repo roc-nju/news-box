@@ -8,7 +8,14 @@
     "fetch": "tsx src/index.ts",
     "fetch:dev": "tsx watch src/index.ts",
     "fetch:opml": "tsx src/test-opml.ts",
-    "build": "tsc",
+    "dev": "concurrently \"pnpm server:dev\" \"pnpm dev:web\"",
+    "server": "tsx src/server.ts",
+    "server:dev": "tsx watch src/server.ts",
+    "dev:web": "pnpm --dir web dev",
+    "build:api": "tsc",
+    "build:web": "pnpm --dir web build",
+    "build": "pnpm build:api && pnpm build:web",
+    "start": "node dist/server.js",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -35,6 +42,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "concurrently": "^9.2.1",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0",
     "vitest": "^2.1.0"

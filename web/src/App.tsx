@@ -1,96 +1,62 @@
-import { useState } from 'react'
-import { Header } from './components/Header'
-import { StatsCards } from './components/StatsCards'
-import { FilterBar } from './components/FilterBar'
-import { NewsList } from './components/NewsList'
-import { SourceModal } from './components/SourceModal'
+import { useEffect, useState } from 'react'
+import { LayoutDashboard, Newspaper } from 'lucide-react'
+
+import { AdminDashboard } from './components/AdminDashboard'
+import { NewsDashboard } from './components/NewsDashboard'
 import { useTheme } from './hooks/useTheme'
-import { useNewsData } from './hooks/useNewsData'
 
-function App() {
+type AppView = 'news' | 'admin'
+
+function getViewFromHash(hash: string): AppView {
+  return hash === '#/admin' ? 'admin' : 'news'
+}
+
+export default function App() {
   const { theme, toggleTheme } = useTheme()
-  const [showSourceModal, setShowSourceModal] = useState(false)
+  const [view, setView] = useState<AppView>(() => getViewFromHash(window.location.hash))
 
-  const {
-    data,
-    loading,
-    error,
-    filteredItems,
-    siteStats,
-    sourceStats,
-    searchQuery,
-    setSearchQuery,
-    selectedSite,
-    setSelectedSite,
-    selectedSource,
-    setSelectedSource,
-    loadMore,
-    hasMore,
-    refresh,
-    timeRange,
-    setTimeRange,
-  } = useNewsData()
+  useEffect(() => {
+    const handleHashChange = () => setView(getViewFromHash(window.location.hash))
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  function navigate(nextView: AppView) {
+    window.location.hash = nextView === 'admin' ? '#/admin' : '#/'
+    setView(nextView)
+  }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Header 
-        theme={theme} 
-        toggleTheme={toggleTheme} 
-        onRefresh={refresh}
-        loading={loading}
-        generatedAt={data?.generated_at}
-        windowHours={data?.window_hours}
-        onShowSources={() => setShowSourceModal(true)}
-        timeRange={timeRange}
-        onTimeRangeChange={setTimeRange}
-      />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        <StatsCards
-          totalItems={data?.total_items || 0}
-          sourceCount={data?.source_count || 0}
-          windowHours={data?.window_hours || 24}
-          siteStats={siteStats}
-          onShowSources={() => setShowSourceModal(true)}
-        />
-        
-        <FilterBar
-          siteStats={siteStats}
-          sourceStats={sourceStats}
-          selectedSite={selectedSite}
-          onSiteChange={setSelectedSite}
-          selectedSource={selectedSource}
-          onSourceChange={setSelectedSource}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-        />
-        
-        <NewsList
-          items={filteredItems}
-          loading={loading}
-          error={error}
-          hasMore={hasMore}
-          onLoadMore={loadMore}
-        />
-      </main>
-      
-      <footer className="border-t border-slate-200 dark:border-slate-700 py-6 mt-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm text-slate-500 dark:text-slate-400">
-            AI 资讯聚合 · 数据来源于多个 AI 资讯平台
-          </p>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(15,23,42,0.05),_transparent_28%),linear-gradient(180deg,_#f8fafc_0%,_#eef2ff_100%)]">
+      <div className="border-b border-white/70 bg-white/80 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">AI Signal Board</p>
+            <h1 className="mt-1 text-xl font-semibold text-slate-900">新闻聚合与订阅源后台</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              className={`btn inline-flex items-center gap-2 ${view === 'news' ? 'btn-primary' : 'btn-ghost'}`}
+              onClick={() => navigate('news')}
+            >
+              <Newspaper size={16} />
+              前台
+            </button>
+            <button
+              className={`btn inline-flex items-center gap-2 ${view === 'admin' ? 'btn-primary' : 'btn-ghost'}`}
+              onClick={() => navigate('admin')}
+            >
+              <LayoutDashboard size={16} />
+              后台
+            </button>
+            <button className="btn btn-ghost" onClick={toggleTheme}>
+              {theme === 'dark' ? '浅色' : '深色'}
+            </button>
+          </div>
         </div>
-      </footer>
+      </div>
 
-      <SourceModal
-        isOpen={showSourceModal}
-        onClose={() => setShowSourceModal(false)}
-        siteStats={siteStats}
-        sourceCount={data?.source_count || 0}
-        windowHours={data?.window_hours || 24}
-      />
+      {view === 'news' ? <NewsDashboard theme={theme} toggleTheme={toggleTheme} /> : <AdminDashboard />}
     </div>
   )
 }
-
-export default App

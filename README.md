@@ -208,14 +208,38 @@ GitHub Actions 每 2 小时自动抓取，数据永远保持最新
 git clone https://github.com/SuYxh/ai-news-aggregator.git
 cd ai-news-aggregator
 
-# 安装依赖
+# 安装根目录依赖
 pnpm install
 
-# 运行数据抓取
+# 安装前端依赖
+pnpm --dir web install
+
+# 先执行一次抓取，生成新闻数据
 pnpm fetch
 
-# 启动 Web 界面
-cd web && pnpm install && pnpm dev
+# 开发模式：同时启动 API + Web
+pnpm dev
+```
+
+### 生产运行
+
+```bash
+# 构建 API 和 Web
+pnpm build
+
+# 启动单服务入口
+pnpm start
+```
+
+默认访问地址：
+
+- 前台首页：`http://localhost:8787/`
+- 管理后台：`http://localhost:8787/#/admin`
+
+如果本机已有程序占用 `8787`，可切换端口：
+
+```bash
+PORT=8788 pnpm start
 ```
 
 ### 命令说明
@@ -230,11 +254,20 @@ pnpm fetch:opml
 # 限制测试前 N 个 RSS
 pnpm fetch:opml ./feeds/follow.opml 10
 
-# Web 开发模式
-cd web && pnpm dev
+# API 开发模式
+pnpm server:dev
 
-# Web 生产构建
-cd web && pnpm build
+# Web 开发模式
+pnpm dev:web
+
+# 一键开发模式（API + Web）
+pnpm dev
+
+# 一键生产构建（API + Web）
+pnpm build
+
+# 启动生产服务
+pnpm start
 ```
 
 ### 命令行参数

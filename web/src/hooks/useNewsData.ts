@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import type { NewsData, NewsItem, SiteStat } from '../types'
+import { fetchNews } from '../utils/api'
 
 export interface SourceStat {
   source: string
@@ -45,13 +46,7 @@ export function useNewsData(): UseNewsDataReturn {
     setLoading(true)
     setError(null)
     try {
-      const basePath = import.meta.env.BASE_URL || '/'
-      const fileName = range === '24h' ? 'latest-24h.json' : 'latest-7d.json'
-      const response = await fetch(`${basePath}data/${fileName}`)
-      if (!response.ok) {
-        throw new Error('数据加载失败')
-      }
-      const json = await response.json()
+      const json = await fetchNews(range) as NewsData
       setData(json)
     } catch (err) {
       setError(err instanceof Error ? err.message : '未知错误')

@@ -5,6 +5,9 @@ feeds/*.opml
 node_modules/
 
 dist/
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
 
 # IDE
 .idea/

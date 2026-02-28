@@ -55,3 +55,89 @@ export interface SiteStatus {
   duration_ms: number
   error: string | null
 }
+
+export interface TopicCategory {
+  id: string
+  name: string
+  description: string | null
+  sort_order: number
+  enabled: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface SourceMethodCategory {
+  id: string
+  topic_category_id: string
+  topic_category_name?: string
+  name: string
+  description: string | null
+  template_key: string
+  allow_create: boolean
+  sort_order: number
+  enabled: boolean
+  created_at: string
+  updated_at: string
+}
+
+export type SourceStatusType = 'enabled' | 'disabled'
+export type AvailabilityStatus = 'pending' | 'passed' | 'failed'
+
+export interface SourceListItem {
+  id: string
+  name: string
+  base_url: string
+  config_payload: string
+  status: SourceStatusType
+  availability_status: AvailabilityStatus
+  availability_checked_at: string | null
+  availability_error: string | null
+  last_fetched_at: string | null
+  last_fetch_status: string | null
+  last_fetch_error: string | null
+  sort_order: number
+  notes: string | null
+  deleted_at: string | null
+  created_at: string
+  updated_at: string
+  topic_category_id: string
+  topic_category_name: string
+  source_method_category_id: string
+  source_method_category_name: string
+  template_key: string
+}
+
+export interface ValidationResult {
+  ok: boolean
+  message: string
+  normalizedBaseUrl: string
+  normalizedConfig: Record<string, unknown>
+}
+
+export interface FetcherTemplate {
+  id: string
+  key: string
+  name: string
+  description: string | null
+  allow_instance_create: boolean
+  config_schema: string
+  validator_key: string
+  fetcher_key: string
+  enabled: boolean
+}
+
+export interface AdminBootstrapData {
+  topicCategories: TopicCategory[]
+  sourceMethodCategories: SourceMethodCategory[]
+  fetcherTemplates: FetcherTemplate[]
+  sources: SourceListItem[]
+  recycleBin: SourceListItem[]
+  validationLogs: Array<{
+    id: string
+    source_id: string | null
+    result: 'passed' | 'failed'
+    message: string
+    details: string | null
+    checked_at: string
+  }>
+}

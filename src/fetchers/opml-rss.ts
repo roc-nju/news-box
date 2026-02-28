@@ -148,6 +148,7 @@ async function fetchSingleFeed(
   return {
     items: localItems,
     status: {
+      source_record_id: feed.sourceId,
       site_id: `opmlrss:${feedId}`,
       site_name: 'OPML RSS',
       feed_title: feedTitle,
@@ -176,25 +177,34 @@ export async function fetchOpmlRss(
 }> {
   const opmlContent = await readFile(opmlPath, 'utf-8');
   let feeds = parseOpmlSubscriptions(opmlContent);
+  if (maxFeeds > 0) feeds = feeds.slice(0, maxFeeds);
+  if (verbose) console.log(`  📋 Found ${feeds.length} feeds in OPML`);
 
-  if (maxFeeds > 0) {
-    feeds = feeds.slice(0, maxFeeds);
-  }
+  return fetchRssFeeds(now, feeds, verbose);
+}
 
-  if (verbose) {
-    console.log(`  📋 Found ${feeds.length} feeds in OPML`);
-  }
+export async function fetchRssFeeds(
+  now: Date,
+  feeds: OpmlFeed[],
+  verbose: boolean = true
+): Promise<{
+  items: RawItem[];
+  summaryStatus: FetchStatus;
+  feedStatuses: RssFeedStatus[];
+}> {
+  const resolvedInput = [...feeds];
 
   const items: RawItem[] = [];
   const feedStatuses: RssFeedStatus[] = [];
   const resolvedFeeds: OpmlFeed[] = [];
 
-  for (const feed of feeds) {
+  for (const feed of resolvedInput) {
     const { url: resolvedUrl, skipReason } = resolveOfficialRssUrl(feed.xmlUrl);
 
     if (!resolvedUrl) {
       const feedId = hashString(feed.xmlUrl).slice(0, 10);
       feedStatuses.push({
+        source_record_id: feed.sourceId,
         site_id: `opmlrss:${feedId}`,
         site_name: 'OPML RSS',
         feed_title: feed.title,

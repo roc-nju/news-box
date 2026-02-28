@@ -1,4 +1,10 @@
 export const CONFIG = {
+  platform: {
+    databasePath: process.env.PLATFORM_DB_PATH || './data/platform.sqlite',
+    apiHost: process.env.HOST || '0.0.0.0',
+    apiPort: Number(process.env.PORT || '8787'),
+  },
+
   http: {
     userAgent:
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',

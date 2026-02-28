@@ -34,6 +34,7 @@ export interface FetchStatus {
 }
 
 export interface RssFeedStatus extends FetchStatus {
+  source_record_id?: string;
   feed_title?: string;
   feed_url?: string;
   effective_feed_url?: string | null;
@@ -134,6 +135,7 @@ export interface WaytoagiPayload {
 }
 
 export interface OpmlFeed {
+  sourceId?: string;
   title: string;
   xmlUrl: string;
   htmlUrl: string;
