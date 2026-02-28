@@ -1,6 +1,7 @@
 import { Sun, Moon, Bot, Clock, Info, Github } from 'lucide-react'
 import { formatDateTime } from '../utils/formatDate'
 import type { TimeRange } from '../hooks/useNewsData'
+import { runtimeConfig } from '../utils/runtime'
 
 interface HeaderProps {
   theme: 'light' | 'dark'
@@ -86,7 +87,7 @@ export function Header({
               </div>
             )}
             <a
-              href="https://github.com/SuYxh/ai-news-aggregator"
+              href={runtimeConfig.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-ghost p-2 rounded-lg"

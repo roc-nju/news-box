@@ -1,5 +1,6 @@
 import { existsSync } from 'fs';
 import { readFile } from 'fs/promises';
+import { resolve } from 'path';
 
 import { CONFIG } from '../config.js';
 import { parseOpmlSubscriptions } from '../fetchers/opml-rss.js';
@@ -11,6 +12,13 @@ import type { SourceEditorInput, ValidationResult } from './types.js';
 interface OpmlGroup {
   name: string;
   feeds: OpmlFeed[];
+}
+
+interface SeedRssSource {
+  topic: string;
+  name: string;
+  feedUrl: string;
+  htmlUrl?: string;
 }
 
 function buildValidation(feed: OpmlFeed): ValidationResult {
@@ -47,6 +55,106 @@ function parseOpmlGroups(content: string): OpmlGroup[] {
   }
 
   return Array.from(groups.entries()).map(([name, groupFeeds]) => ({ name, feeds: groupFeeds }));
+}
+
+async function importSeedRssSources(db: PlatformDatabase): Promise<void> {
+  const seedPath = resolve('data', 'default-rss-sources.json');
+  if (!existsSync(seedPath)) return;
+
+  const content = await readFile(seedPath, 'utf-8');
+  const seeds = JSON.parse(content) as SeedRssSource[];
+  const existingSources = db.listSources({ includeDeleted: true });
+  const topics = db.listTopicCategories();
+  const methods = db.listSourceMethodCategories();
+
+  for (const seed of seeds) {
+    const topic =
+      topics.find((item) => item.name === seed.topic) ||
+      db.createTopicCategory({
+        name: seed.topic,
+        description: `${seed.topic} 默认 RSS 种子分组`,
+        sortOrder: 100,
+        enabled: true,
+      });
+    if (!topics.some((item) => item.id === topic.id)) topics.push(topic);
+
+    const method =
+      methods.find((item) => item.topic_category_id === topic.id && item.template_key === 'rss') ||
+      db.createSourceMethodCategory({
+        topicCategoryId: topic.id,
+        name: 'RSS 订阅',
+        description: '基于 RSS/Atom 的订阅获取方式',
+        templateKey: 'rss',
+        allowCreate: true,
+        enabled: true,
+        sortOrder: 0,
+      });
+    if (!methods.some((item) => item.id === method.id)) {
+      methods.push({ ...method, topic_category_name: topic.name });
+    }
+
+    const duplicate = existingSources.find((source) => {
+      if (source.template_key !== 'rss') return false;
+      try {
+        const config = JSON.parse(source.config_payload || '{}') as { feedUrl?: string };
+        return config.feedUrl === seed.feedUrl || source.name === seed.name;
+      } catch {
+        return source.name === seed.name;
+      }
+    });
+
+    if (duplicate) continue;
+
+    db.createSource(
+      {
+        name: seed.name,
+        topicCategoryId: topic.id,
+        sourceMethodCategoryId: method.id,
+        baseUrl: seed.htmlUrl || seed.feedUrl,
+        configPayload: {
+          feedUrl: seed.feedUrl,
+          htmlUrl: seed.htmlUrl || undefined,
+        },
+        status: 'enabled',
+        notes: '默认 RSS 种子数据',
+      },
+      {
+        ok: true,
+        message: '默认 RSS 种子已导入',
+        normalizedBaseUrl: seed.htmlUrl || seed.feedUrl,
+        normalizedConfig: {
+          feedUrl: seed.feedUrl,
+          htmlUrl: seed.htmlUrl || undefined,
+        },
+      }
+    );
+    existingSources.push({
+      id: '',
+      name: seed.name,
+      base_url: seed.htmlUrl || seed.feedUrl,
+      config_payload: JSON.stringify({
+        feedUrl: seed.feedUrl,
+        htmlUrl: seed.htmlUrl || undefined,
+      }),
+      status: 'enabled',
+      availability_status: 'passed',
+      availability_checked_at: null,
+      availability_error: null,
+      last_fetched_at: null,
+      last_fetch_status: null,
+      last_fetch_error: null,
+      sort_order: 0,
+      notes: '默认 RSS 种子数据',
+      deleted_at: null,
+      created_at: '',
+      updated_at: '',
+      topic_category_id: topic.id,
+      topic_category_name: topic.name,
+      source_method_category_id: method.id,
+      source_method_category_name: method.name,
+      template_key: 'rss',
+    });
+  }
 }
 
 export async function bootstrapPlatformDatabase(
@@ -196,4 +304,6 @@ export async function bootstrapPlatformDatabase(
       );
     }
   }
+
+  await importSeedRssSources(db);
 }

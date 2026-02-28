@@ -1,6 +1,7 @@
 import { X, Rss, Globe, CheckCircle, XCircle, Clock, ExternalLink } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import type { SiteStat } from '../types'
+import { runtimeConfig } from '../utils/runtime'
 
 interface SourceModalProps {
   isOpen: boolean
@@ -85,13 +86,12 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
 
   useEffect(() => {
     if (isOpen) {
-      const basePath = import.meta.env.BASE_URL || '/'
-      fetch(`${basePath}data/source-status.json`)
+      fetch(runtimeConfig.staticDataUrl('source-status.json'))
         .then(res => res.json())
         .then(data => setSourceStatus(data))
         .catch(() => {})
       
-      fetch(`${basePath}data/opml-feeds.json`)
+      fetch(runtimeConfig.staticDataUrl('opml-feeds.json'))
         .then(res => res.json())
         .then(data => setOpmlGroups(data))
         .catch(() => {})

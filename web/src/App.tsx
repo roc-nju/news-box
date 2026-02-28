@@ -4,6 +4,7 @@ import { LayoutDashboard, Newspaper } from 'lucide-react'
 import { AdminDashboard } from './components/AdminDashboard'
 import { NewsDashboard } from './components/NewsDashboard'
 import { useTheme } from './hooks/useTheme'
+import { runtimeConfig } from './utils/runtime'
 
 type AppView = 'news' | 'admin'
 
@@ -21,7 +22,15 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
+  useEffect(() => {
+    if (runtimeConfig.isStaticDeploy && view === 'admin') {
+      window.location.hash = '#/'
+      setView('news')
+    }
+  }, [view])
+
   function navigate(nextView: AppView) {
+    if (runtimeConfig.isStaticDeploy && nextView === 'admin') return
     window.location.hash = nextView === 'admin' ? '#/admin' : '#/'
     setView(nextView)
   }
@@ -45,6 +54,8 @@ export default function App() {
             <button
               className={`btn inline-flex items-center gap-2 ${view === 'admin' ? 'btn-primary' : 'btn-ghost'}`}
               onClick={() => navigate('admin')}
+              disabled={runtimeConfig.isStaticDeploy}
+              title={runtimeConfig.isStaticDeploy ? 'GitHub Pages 仅提供公开资讯页，后台需本地启动 Node 服务' : undefined}
             >
               <LayoutDashboard size={16} />
               后台
@@ -56,7 +67,11 @@ export default function App() {
         </div>
       </div>
 
-      {view === 'news' ? <NewsDashboard theme={theme} toggleTheme={toggleTheme} /> : <AdminDashboard />}
+      {view === 'news' || runtimeConfig.isStaticDeploy ? (
+        <NewsDashboard theme={theme} toggleTheme={toggleTheme} />
+      ) : (
+        <AdminDashboard />
+      )}
     </div>
   )
 }

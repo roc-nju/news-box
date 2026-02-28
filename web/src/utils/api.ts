@@ -5,8 +5,9 @@ import type {
   TopicCategory,
   ValidationResult,
 } from '../types'
+import { runtimeConfig } from './runtime'
 
-const API_BASE = import.meta.env.VITE_API_BASE || ''
+const API_BASE = runtimeConfig.apiBase
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
@@ -25,7 +26,16 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return response.json() as Promise<T>
 }
 
-export function fetchNews(range: '24h' | '7d') {
+export async function fetchNews(range: '24h' | '7d') {
+  if (runtimeConfig.isStaticDeploy) {
+    const fileName = range === '7d' ? 'latest-7d.json' : 'latest-24h.json'
+    const response = await fetch(runtimeConfig.staticDataUrl(fileName))
+    if (!response.ok) {
+      throw new Error('静态新闻数据加载失败')
+    }
+    return response.json()
+  }
+
   return request(`/api/news?range=${range}`)
 }
 
