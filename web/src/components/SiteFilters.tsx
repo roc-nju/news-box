@@ -24,10 +24,10 @@ export function SiteFilters({
 
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap gap-2">
+      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
         <button
           onClick={() => onSiteChange('all')}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+          className={`shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
             selectedSite === 'all'
               ? 'bg-primary-500 text-white shadow-md shadow-primary-500/25'
               : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
@@ -43,7 +43,7 @@ export function SiteFilters({
             <button
               key={site.site_id}
               onClick={() => onSiteChange(site.site_id)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
+              className={`shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
                 isSelected
                   ? 'bg-primary-500 text-white shadow-md shadow-primary-500/25'
                   : colorClass + ' hover:opacity-80'
@@ -72,7 +72,7 @@ export function SiteFilters({
               </button>
             )}
           </div>
-          <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto">
+          <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto sm:max-h-32">
             {sourceStats.slice(0, 30).map((source) => {
               const isSelected = selectedSource === source.source
               

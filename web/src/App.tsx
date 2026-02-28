@@ -38,18 +38,22 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(15,23,42,0.05),_transparent_28%),linear-gradient(180deg,_#f8fafc_0%,_#eef2ff_100%)]">
       <div className="border-b border-white/70 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">AI Signal Board</p>
-            <h1 className="mt-1 text-xl font-semibold text-slate-900">新闻聚合与订阅源后台</h1>
+        <div className="mx-auto flex max-w-7xl items-start justify-between gap-3 px-4 py-3 sm:items-center sm:px-6 sm:py-4 lg:px-8">
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400 sm:text-xs">AI Signal Board</p>
+            <h1 className="mt-1 text-lg font-semibold text-slate-900 sm:text-xl">
+              <span className="sm:hidden">新闻聚合</span>
+              <span className="hidden sm:inline">新闻聚合与订阅源后台</span>
+            </h1>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
               className={`btn inline-flex items-center gap-2 ${view === 'news' ? 'btn-primary' : 'btn-ghost'}`}
               onClick={() => navigate('news')}
+              title="前台"
             >
               <Newspaper size={16} />
-              前台
+              <span className="hidden sm:inline">前台</span>
             </button>
             <button
               className={`btn inline-flex items-center gap-2 ${view === 'admin' ? 'btn-primary' : 'btn-ghost'}`}
@@ -58,10 +62,11 @@ export default function App() {
               title={runtimeConfig.isStaticDeploy ? 'GitHub Pages 仅提供公开资讯页，后台需本地启动 Node 服务' : undefined}
             >
               <LayoutDashboard size={16} />
-              后台
+              <span className="hidden sm:inline">后台</span>
             </button>
-            <button className="btn btn-ghost" onClick={toggleTheme}>
-              {theme === 'dark' ? '浅色' : '深色'}
+            <button className="btn btn-ghost px-3 sm:px-4" onClick={toggleTheme} title={theme === 'dark' ? '切换浅色模式' : '切换深色模式'}>
+              <span className="sm:hidden">{theme === 'dark' ? '浅' : '深'}</span>
+              <span className="hidden sm:inline">{theme === 'dark' ? '浅色' : '深色'}</span>
             </button>
           </div>
         </div>
