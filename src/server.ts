@@ -2,6 +2,7 @@ import { createServer } from 'http';
 import { existsSync } from 'fs';
 import { readFile } from 'fs/promises';
 import { extname, normalize, resolve, sep } from 'path';
+import { Readable } from 'stream';
 
 import { CONFIG } from './config.js';
 import { PlatformDatabase } from './platform/database.js';
@@ -101,6 +102,73 @@ async function serveStaticAsset(
   }
 }
 
+function isAllowedMediaUrl(rawUrl: string): boolean {
+  try {
+    const target = new URL(rawUrl);
+    if (!['http:', 'https:'].includes(target.protocol)) return false;
+    return ['video.twimg.com', 'pbs.twimg.com'].includes(target.hostname);
+  } catch {
+    return false;
+  }
+}
+
+async function proxyMedia(
+  req: import('http').IncomingMessage,
+  res: import('http').ServerResponse,
+  rawUrl: string
+): Promise<void> {
+  if (!isAllowedMediaUrl(rawUrl)) {
+    json(res, 400, { error: 'Unsupported media url' });
+    return;
+  }
+
+  const headers = new Headers({
+    'User-Agent': CONFIG.http.userAgent,
+  });
+  const range = req.headers.range;
+  if (typeof range === 'string' && range.trim()) {
+    headers.set('Range', range);
+  }
+
+  const upstream = await fetch(rawUrl, {
+    headers,
+    redirect: 'follow',
+  });
+
+  if (!upstream.ok && upstream.status !== 206) {
+    json(res, upstream.status, { error: `Upstream media request failed: ${upstream.status}` });
+    return;
+  }
+
+  const responseHeaders: Record<string, string> = {
+    'Access-Control-Allow-Origin': '*',
+    'Cache-Control': upstream.headers.get('cache-control') || 'public, max-age=3600',
+    'Content-Type': upstream.headers.get('content-type') || 'application/octet-stream',
+    'Accept-Ranges': upstream.headers.get('accept-ranges') || 'bytes',
+    'Cross-Origin-Resource-Policy': 'cross-origin',
+  };
+
+  const passthroughHeaders = ['content-length', 'content-range', 'etag', 'last-modified'];
+  for (const headerName of passthroughHeaders) {
+    const value = upstream.headers.get(headerName);
+    if (value) {
+      responseHeaders[headerName
+        .split('-')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join('-')] = value;
+    }
+  }
+
+  res.writeHead(upstream.status, responseHeaders);
+
+  if (!upstream.body) {
+    res.end();
+    return;
+  }
+
+  Readable.fromWeb(upstream.body as globalThis.ReadableStream<Uint8Array>).pipe(res);
+}
+
 function toSourceEditorInput(body: JsonRecord): SourceEditorInput {
   const configPayload =
     typeof body.configPayload === 'object' && body.configPayload !== null
@@ -156,6 +224,12 @@ async function handleRequest(
     if (req.method === 'GET' && pathname === '/api/news') {
       const range = url.searchParams.get('range') || '24h';
       json(res, 200, await readNewsPayload(range));
+      return;
+    }
+
+    if (req.method === 'GET' && pathname === '/api/media') {
+      const targetUrl = url.searchParams.get('url') || '';
+      await proxyMedia(req, res, targetUrl);
       return;
     }
 

@@ -1,8 +1,9 @@
+import { load } from 'cheerio';
 import { readFile } from 'fs/promises';
 import { XMLParser } from 'fast-xml-parser';
 import Parser from 'rss-parser';
 import pLimit from 'p-limit';
-import type { RawItem, RssFeedStatus, FetchStatus, OpmlFeed } from '../types.js';
+import type { MediaItem, RawItem, RssFeedStatus, FetchStatus, OpmlFeed } from '../types.js';
 import { CONFIG } from '../config.js';
 import { parseDate } from '../utils/date.js';
 import { firstNonEmpty } from '../utils/text.js';
@@ -77,6 +78,104 @@ function resolveOfficialRssUrl(feedUrl: string): { url: string | null; skipReaso
   return { url: src, skipReason: null };
 }
 
+function normalizeFeedText(value: unknown): string {
+  if (typeof value !== 'string') return '';
+
+  const decoded = load(`<div>${value}</div>`).text();
+  return decoded
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n')
+    .replace(/\u00a0/g, ' ')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/[ \t]{2,}/g, ' ')
+    .trim();
+}
+
+function cleanFeedContentText(text: string, title: string): string | null {
+  const cleaned = text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((line) => !/^⚡\s*Powered by xgo\.ing$/i.test(line))
+    .filter((line) => !/^[💬🔄❤️👀📊\d\s]+$/.test(line))
+    .join('\n\n')
+    .replace(/\s*💬\d+[\s\S]*$/u, '')
+    .replace(/\s*⚡\s*Powered by xgo\.ing$/iu, '')
+    .trim();
+
+  if (!cleaned || cleaned === title.trim()) return null;
+  return cleaned;
+}
+
+function extractEntryContent(entry: Record<string, unknown>, title: string): string | null {
+  const candidates = [
+    entry.contentSnippet,
+    entry.content,
+    entry.summary,
+    entry.description,
+    entry['content:encoded'],
+  ];
+
+  for (const candidate of candidates) {
+    const text = normalizeFeedText(candidate);
+    if (!text) continue;
+    const cleaned = cleanFeedContentText(text, title);
+    if (cleaned) return cleaned;
+  }
+
+  const titleAsContent = normalizeFeedText(title);
+  if (titleAsContent.includes('\n')) {
+    return cleanFeedContentText(titleAsContent, title);
+  }
+
+  return null;
+}
+
+function extractEntryMedia(entry: Record<string, unknown>): MediaItem[] {
+  const candidates = [
+    entry.description,
+    entry.content,
+    entry['content:encoded'],
+    entry.summary,
+  ];
+
+  const media = new Map<string, MediaItem>();
+
+  for (const candidate of candidates) {
+    if (typeof candidate !== 'string' || !candidate.trim()) continue;
+
+    const root = load(`<div>${candidate}</div>`);
+
+    root('img').each((_, element) => {
+      const src = String(root(element).attr('src') || '').trim();
+      if (!src || !/pbs\.twimg\.com\/media\//i.test(src)) return;
+      if (!media.has(`image:${src}`)) {
+        media.set(`image:${src}`, {
+          type: 'image',
+          url: src,
+        });
+      }
+    });
+
+    root('video').each((_, element) => {
+      const source = root(element).find('source').first();
+      const src = String(source.attr('src') || root(element).attr('src') || '').trim();
+      const poster = String(root(element).attr('poster') || '').trim() || null;
+      if (!src || !/video\.twimg\.com\//i.test(src)) return;
+      if (!media.has(`video:${src}`)) {
+        media.set(`video:${src}`, {
+          type: 'video',
+          url: src,
+          posterUrl: poster,
+        });
+      }
+    });
+  }
+
+  return Array.from(media.values());
+}
+
 async function fetchSingleFeed(
   feed: OpmlFeed,
   now: Date,
@@ -108,6 +207,8 @@ async function fetchSingleFeed(
       const title = (entry.title || '').trim();
       const url = (entry.link || '').trim();
       if (!title || !url) continue;
+      const contentText = extractEntryContent(entry as Record<string, unknown>, title);
+      const mediaItems = extractEntryMedia(entry as Record<string, unknown>);
 
       const publishedAt =
         parseDate(entry.pubDate, now) ||
@@ -123,6 +224,8 @@ async function fetchSingleFeed(
         title,
         url,
         publishedAt,
+        contentText,
+        mediaItems,
         meta: {
           feed_url: feedUrl,
           feed_home: feed.htmlUrl || '',

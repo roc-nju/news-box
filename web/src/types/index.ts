@@ -1,3 +1,9 @@
+export interface MediaItem {
+  type: 'image' | 'video'
+  url: string
+  posterUrl?: string | null
+}
+
 export interface NewsItem {
   id: string
   site_id: string
@@ -8,6 +14,8 @@ export interface NewsItem {
   published_at: string | null
   first_seen_at: string
   last_seen_at: string
+  content_text?: string | null
+  media_items?: MediaItem[]
   title_original: string
   title_en: string | null
   title_zh: string | null

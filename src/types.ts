@@ -1,3 +1,9 @@
+export interface MediaItem {
+  type: 'image' | 'video';
+  url: string;
+  posterUrl?: string | null;
+}
+
 export interface RawItem {
   siteId: string;
   siteName: string;
@@ -5,6 +11,8 @@ export interface RawItem {
   title: string;
   url: string;
   publishedAt: Date | null;
+  contentText?: string | null;
+  mediaItems?: MediaItem[];
   meta: Record<string, unknown>;
 }
 
@@ -18,6 +26,8 @@ export interface ArchiveItem {
   published_at: string | null;
   first_seen_at: string;
   last_seen_at: string;
+  content_text?: string | null;
+  media_items?: MediaItem[];
   title_original?: string;
   title_en?: string | null;
   title_zh?: string | null;

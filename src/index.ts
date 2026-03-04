@@ -243,6 +243,8 @@ async function main(): Promise<number> {
         published_at: toISOString(raw.publishedAt),
         first_seen_at: toISOString(now)!,
         last_seen_at: toISOString(now)!,
+        content_text: raw.contentText || null,
+        media_items: raw.mediaItems || [],
       });
     } else {
       existing.site_id = raw.siteId;
@@ -252,6 +254,12 @@ async function main(): Promise<number> {
       existing.url = url;
       if (raw.publishedAt && !existing.published_at) {
         existing.published_at = toISOString(raw.publishedAt);
+      }
+      if (raw.contentText) {
+        existing.content_text = raw.contentText;
+      }
+      if (raw.mediaItems && raw.mediaItems.length > 0) {
+        existing.media_items = raw.mediaItems;
       }
       existing.last_seen_at = toISOString(now)!;
     }
@@ -282,6 +290,7 @@ async function main(): Promise<number> {
       normalized.source = maybeFixMojibake(
         normalizeSourceForDisplay(normalized.site_id, normalized.source, normalized.url)
       );
+      normalized.content_text = maybeFixMojibake(normalized.content_text || '');
 
       if (normalized.site_id === 'aihubtoday') {
         const t = (normalized.title || '').trim();
