@@ -36,6 +36,43 @@ function json(res: import('http').ServerResponse, status: number, payload: unkno
   res.end(JSON.stringify(payload));
 }
 
+function unauthorized(res: import('http').ServerResponse, message: string = 'Unauthorized'): void {
+  res.writeHead(401, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'WWW-Authenticate': 'Basic realm="news-box-admin"',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  });
+  res.end(JSON.stringify({ error: message }));
+}
+
+function isAdminAuthorized(req: import('http').IncomingMessage): boolean {
+  const expectedUsername = process.env.ADMIN_USERNAME || '';
+  const expectedPassword = process.env.ADMIN_PASSWORD || '';
+
+  if (!expectedUsername || !expectedPassword) {
+    return false;
+  }
+
+  const authHeader = req.headers.authorization || '';
+  if (!authHeader.startsWith('Basic ')) {
+    return false;
+  }
+
+  try {
+    const decoded = Buffer.from(authHeader.slice(6), 'base64').toString('utf-8');
+    const separatorIndex = decoded.indexOf(':');
+    if (separatorIndex === -1) return false;
+
+    const username = decoded.slice(0, separatorIndex);
+    const password = decoded.slice(separatorIndex + 1);
+    return username === expectedUsername && password === expectedPassword;
+  } catch {
+    return false;
+  }
+}
+
 async function readJsonBody(req: import('http').IncomingMessage): Promise<JsonRecord> {
   const chunks: Buffer[] = [];
   for await (const chunk of req) {
@@ -207,6 +244,11 @@ async function handleRequest(
   const segments = pathname.split('/').filter(Boolean);
 
   try {
+    if (pathname.startsWith('/api/admin') && !isAdminAuthorized(req)) {
+      unauthorized(res, '后台访问需要认证');
+      return;
+    }
+
     if (!pathname.startsWith('/api')) {
       const served = await serveStaticAsset(req, res, pathname);
       if (served) return;

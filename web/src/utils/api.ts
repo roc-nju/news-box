@@ -5,20 +5,27 @@ import type {
   TopicCategory,
   ValidationResult,
 } from '../types'
+import { buildAdminAuthHeader, clearAdminCredentials, getAdminCredentials } from './adminAuth'
 import { runtimeConfig } from './runtime'
 
 const API_BASE = runtimeConfig.apiBase
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const isAdminRequest = path.startsWith('/api/admin')
+  const adminCredentials = isAdminRequest ? getAdminCredentials() : null
   const response = await fetch(`${API_BASE}${path}`, {
     headers: {
       'Content-Type': 'application/json',
+      ...(adminCredentials ? { Authorization: buildAdminAuthHeader(adminCredentials) } : {}),
       ...(init?.headers || {}),
     },
     ...init,
   })
 
   if (!response.ok) {
+    if (response.status === 401 && isAdminRequest) {
+      clearAdminCredentials()
+    }
     const errorPayload = await response.json().catch(() => ({}))
     throw new Error(errorPayload.error || '请求失败')
   }
@@ -198,8 +205,14 @@ export function importOpmlSources(opmlContent: string) {
 }
 
 export async function exportOpmlSources() {
-  const response = await fetch(`${API_BASE}/api/admin/sources/opml-export`)
+  const adminCredentials = getAdminCredentials()
+  const response = await fetch(`${API_BASE}/api/admin/sources/opml-export`, {
+    headers: adminCredentials ? { Authorization: buildAdminAuthHeader(adminCredentials) } : {},
+  })
   if (!response.ok) {
+    if (response.status === 401) {
+      clearAdminCredentials()
+    }
     throw new Error('导出 OPML 失败')
   }
   return response.text()
