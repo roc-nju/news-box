@@ -6607,5 +6607,11 @@
   "For example, we gave Claude an impossible programming task. It kept trying and failing; with each at...": "例如，我们给克劳德一个不可能的编程任务。它不断地尝试，却又失败；与每个...",
   "Sweden goes back to basics, swapping screens for books in the classroom": "瑞典回归基础，在教室里用书本代替屏幕",
   "Running out of Disk Space in Production": "生产环境中磁盘空间不足",
-  "Packaging 128 languages with Nix": "使用 Nix 打包 128 种语言"
+  "Packaging 128 languages with Nix": "使用 Nix 打包 128 种语言",
+  "Mesh LLM": "网状法学硕士",
+  "ChatGPT on CarPlay": "CarPlay 上的 ChatGPT",
+  "Trinity-Large-Thinking by Arcee": "Arcee 的三位一体大思考",
+  "800 Rust terminal projects in 3 years": "3年内800个Rust终端项目",
+  "I Built an SMS Gateway with a $20 Android Phone – Jonno.nz": "我用 20 美元的 Android 手机构建了 SMS 网关 – Jonno.nz",
+  "Show HN: SyNumpy – a Header only C++17 library for working with NumPy Arrays": "Show HN：SyNumpy – 用于处理 NumPy 数组的仅标头 C++17 库"
 }
