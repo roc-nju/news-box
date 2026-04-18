@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-18T16:26:57.901Z",
+  "generated_at": "2026-04-18T18:33:18.467Z",
   "sites": [
     {
       "site_id": "techurls",
       "site_name": "TechURLs",
       "ok": true,
       "item_count": 405,
-      "duration_ms": 391,
+      "duration_ms": 747,
       "error": null
     },
     {
@@ -14,15 +14,15 @@
       "site_name": "Buzzing",
       "ok": true,
       "item_count": 768,
-      "duration_ms": 481,
+      "duration_ms": 626,
       "error": null
     },
     {
       "site_id": "iris",
       "site_name": "Info Flow",
       "ok": true,
-      "item_count": 358,
-      "duration_ms": 13128,
+      "item_count": 324,
+      "duration_ms": 9437,
       "error": null
     },
     {
@@ -30,23 +30,23 @@
       "site_name": "BestBlogs",
       "ok": true,
       "item_count": 0,
-      "duration_ms": 722,
+      "duration_ms": 954,
       "error": null
     },
     {
       "site_id": "tophub",
       "site_name": "TopHub",
       "ok": true,
-      "item_count": 3021,
-      "duration_ms": 1391,
+      "item_count": 3014,
+      "duration_ms": 592,
       "error": null
     },
     {
       "site_id": "zeli",
       "site_name": "Zeli",
       "ok": true,
-      "item_count": 46,
-      "duration_ms": 589,
+      "item_count": 48,
+      "duration_ms": 598,
       "error": null
     },
     {
@@ -54,7 +54,7 @@
       "site_name": "AI HubToday",
       "ok": true,
       "item_count": 1,
-      "duration_ms": 240,
+      "duration_ms": 216,
       "error": null
     },
     {
@@ -62,7 +62,7 @@
       "site_name": "AIbase",
       "ok": true,
       "item_count": 20,
-      "duration_ms": 1569,
+      "duration_ms": 1120,
       "error": null
     },
     {
@@ -70,7 +70,7 @@
       "site_name": "AI今日热榜",
       "ok": true,
       "item_count": 0,
-      "duration_ms": 106,
+      "duration_ms": 44,
       "error": null
     },
     {
@@ -78,7 +78,7 @@
       "site_name": "NewsNow",
       "ok": true,
       "item_count": 140,
-      "duration_ms": 885,
+      "duration_ms": 384,
       "error": null
     },
     {
@@ -86,7 +86,7 @@
       "site_name": "OPML RSS",
       "ok": false,
       "item_count": 0,
-      "duration_ms": 1861173,
+      "duration_ms": 1861537,
       "error": "62 feeds failed"
     }
   ],
@@ -98,8 +98,8 @@
     "bestblogs",
     "aihot"
   ],
-  "fetched_raw_items": 4759,
-  "items_before_topic_filter": 3510,
+  "fetched_raw_items": 4720,
+  "items_before_topic_filter": 3468,
   "items_in_24h": 384,
   "rss_opml": {
     "enabled": false,
@@ -176,7 +176,7 @@
     "replaced_feeds": [],
     "feeds": [
       {
-        "source_record_id": "944df62b-d00a-4d7b-a184-0547b280b94b",
+        "source_record_id": "723210cd-da27-4dc5-9e7e-3bc8b8d60922",
         "site_id": "opmlrss:73323726d6",
         "site_name": "OPML RSS",
         "feed_title": "AI at Meta(@AIatMeta)",
@@ -184,14 +184,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/ef7c70f9568d45f4915169fef4ce90b4",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30024,
+        "duration_ms": 30025,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "7ee9ccd6-6d28-44fa-83a2-9f462567e225",
+        "source_record_id": "4eb8360a-47c7-4d0f-b845-c012642fca73",
         "site_id": "opmlrss:d9aaafd2ac",
         "site_name": "OPML RSS",
         "feed_title": "AI SDK(@aisdk)",
@@ -206,7 +206,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "555e6042-9b1f-415f-961c-1236227f017a",
+        "source_record_id": "3ccd8930-858f-402e-934a-7df44c5f9e57",
         "site_id": "opmlrss:4ef078e10f",
         "site_name": "OPML RSS",
         "feed_title": "AI产品黄叔(@PMbackttfuture)",
@@ -214,14 +214,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/5b632b7fba274f62928cdcc9d3db4c5e",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30010,
+        "duration_ms": 30028,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "e2dd6205-2bb1-411f-9bd3-6eef85576087",
+        "source_record_id": "ea7ecf85-e7dd-47b0-a75f-78b4ac678315",
         "site_id": "opmlrss:48fabe5cf4",
         "site_name": "OPML RSS",
         "feed_title": "Andrew Ng(@AndrewYNg)",
@@ -236,27 +236,12 @@
         "replaced": false
       },
       {
-        "source_record_id": "e53d83c6-45f3-49fe-bece-a6a455314285",
+        "source_record_id": "ab0c349e-e745-4c08-aa4d-b45d5a65e7cb",
         "site_id": "opmlrss:fc5ff7cf3b",
         "site_name": "OPML RSS",
         "feed_title": "Anthropic(@AnthropicAI)",
         "feed_url": "https://api.xgo.ing/rss/user/fc28a211471b496682feff329ec616e5",
         "effective_feed_url": "https://api.xgo.ing/rss/user/fc28a211471b496682feff329ec616e5",
-        "ok": false,
-        "item_count": 0,
-        "duration_ms": 30023,
-        "error": "Request timed out after 30000ms",
-        "skipped": false,
-        "skip_reason": null,
-        "replaced": false
-      },
-      {
-        "source_record_id": "d1c5462a-b453-4b96-8a95-45ca41b759b6",
-        "site_id": "opmlrss:0c89ad5475",
-        "site_name": "OPML RSS",
-        "feed_title": "Binyuan Hui(@huybery)",
-        "feed_url": "https://api.xgo.ing/rss/user/f54b2b40185943ce8f48a880110b7bc2",
-        "effective_feed_url": "https://api.xgo.ing/rss/user/f54b2b40185943ce8f48a880110b7bc2",
         "ok": false,
         "item_count": 0,
         "duration_ms": 30024,
@@ -266,7 +251,22 @@
         "replaced": false
       },
       {
-        "source_record_id": "74e766da-dfc4-4c75-8cdd-d93176697a70",
+        "source_record_id": "e74f7775-1c17-4c3f-9a46-3f8cb6c7182a",
+        "site_id": "opmlrss:0c89ad5475",
+        "site_name": "OPML RSS",
+        "feed_title": "Binyuan Hui(@huybery)",
+        "feed_url": "https://api.xgo.ing/rss/user/f54b2b40185943ce8f48a880110b7bc2",
+        "effective_feed_url": "https://api.xgo.ing/rss/user/f54b2b40185943ce8f48a880110b7bc2",
+        "ok": false,
+        "item_count": 0,
+        "duration_ms": 30025,
+        "error": "Request timed out after 30000ms",
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false
+      },
+      {
+        "source_record_id": "84bffb91-53cc-4241-8bc1-c4848f7fa4e2",
         "site_id": "opmlrss:0d01c00f0a",
         "site_name": "OPML RSS",
         "feed_title": "bolt.new(@boltdotnew)",
@@ -281,7 +281,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "b69cb768-ed06-4d36-823a-872d7b148ce9",
+        "source_record_id": "37a62934-50cc-4b21-97bd-bb7c76503aba",
         "site_id": "opmlrss:2391905190",
         "site_name": "OPML RSS",
         "feed_title": "Browser Use(@browser_use)",
@@ -296,7 +296,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "b66bc2fd-c415-4cc5-81c8-2321ab9ed2bf",
+        "source_record_id": "5d265f4e-8fc4-4612-aee0-33455d5ab66e",
         "site_id": "opmlrss:a283be9822",
         "site_name": "OPML RSS",
         "feed_title": "cat(@_catwu)",
@@ -304,14 +304,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/66a6b39ddcfa42e39621e0ab293c1bdd",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30013,
+        "duration_ms": 30030,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "6d620175-4f35-42cb-aad3-803310327bdc",
+        "source_record_id": "5764798f-678c-43aa-9232-22f3faf40c82",
         "site_id": "opmlrss:233a674081",
         "site_name": "OPML RSS",
         "feed_title": "ChatGPT(@ChatGPTapp)",
@@ -319,14 +319,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/f7992687b8d74b14bf2341eb3a0a5ec4",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30023,
+        "duration_ms": 30024,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "32b9d9a2-9f89-4e33-9113-eba88eca27fa",
+        "source_record_id": "b494a832-a9e7-46ce-8498-c341ebfb1578",
         "site_id": "opmlrss:4a742bbef0",
         "site_name": "OPML RSS",
         "feed_title": "Claude(@claudeai)",
@@ -334,14 +334,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/01f60d63a61b44d692cc35c7feb0b4a4",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30023,
+        "duration_ms": 30024,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "8462aa1b-5eeb-467e-a968-332e0abeb1d4",
+        "source_record_id": "f50f0c89-e171-4813-a626-9167422037cd",
         "site_id": "opmlrss:ef28686815",
         "site_name": "OPML RSS",
         "feed_title": "Cursor(@cursor_ai)",
@@ -356,7 +356,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "91c49d62-9a94-40a6-b6fb-ad0754007ceb",
+        "source_record_id": "776cae18-3a1f-4f4b-9428-78c17e278aaf",
         "site_id": "opmlrss:d0228231ad",
         "site_name": "OPML RSS",
         "feed_title": "DeepLearning.AI(@DeepLearningAI)",
@@ -371,7 +371,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "dab695e7-fb93-45cb-b0d6-ca332ddc5499",
+        "source_record_id": "c4387648-cb00-4ec2-b4fd-9e1f28e7f976",
         "site_id": "opmlrss:9ff19c9bce",
         "site_name": "OPML RSS",
         "feed_title": "DeepSeek(@deepseek_ai)",
@@ -379,14 +379,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/68b610deb24b47ae9a236811563cda86",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30015,
+        "duration_ms": 30033,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "fff96802-df83-4151-9557-fcdfb4c12f1b",
+        "source_record_id": "b392a2bf-2241-43e9-a506-319910779939",
         "site_id": "opmlrss:10d9692a39",
         "site_name": "OPML RSS",
         "feed_title": "Dify(@dify_ai)",
@@ -401,7 +401,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "9d20ba24-08e8-47b7-98f3-0987ed02b9a3",
+        "source_record_id": "186cf5f3-8604-4cf2-99a2-22e50288af60",
         "site_id": "opmlrss:2c13d9d795",
         "site_name": "OPML RSS",
         "feed_title": "Eric Jing(@ericjing_ai)",
@@ -409,14 +409,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/ddfdcdd4e390495c942f0b5da62af0fb",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30015,
+        "duration_ms": 30032,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "3f48926f-13ee-40b2-9fdc-8bd684d2e7b5",
+        "source_record_id": "696b4c28-e8dc-4d5f-834e-1fd6dfd9d9e2",
         "site_id": "opmlrss:0b9e1c5972",
         "site_name": "OPML RSS",
         "feed_title": "Fei-Fei Li(@drfeifei)",
@@ -424,14 +424,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/a4bfe44bfc0d4c949da21ebd3f5f42a5",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30024,
+        "duration_ms": 30025,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "5927fc89-e991-4b71-9c95-8ff2dc2bef5b",
+        "source_record_id": "b17b24e1-d823-4655-a98b-d768027c61bb",
         "site_id": "opmlrss:9db73586a8",
         "site_name": "OPML RSS",
         "feed_title": "Figma(@figma)",
@@ -439,14 +439,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/f8a106a09a7d404fb8de7eb0c5ddd2a2",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30014,
+        "duration_ms": 30013,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "76ec0213-0257-4043-ba24-c5dcf1549e17",
+        "source_record_id": "a7c2f730-af3d-4a5e-9379-df65012645d2",
         "site_id": "opmlrss:f9225afe10",
         "site_name": "OPML RSS",
         "feed_title": "Firecrawl(@firecrawl_dev)",
@@ -461,7 +461,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "6e88a199-6bc9-4166-a1d8-b2c347d2b082",
+        "source_record_id": "9644951a-2b1a-40c3-8a8a-c34e1cdc9783",
         "site_id": "opmlrss:834fbb915d",
         "site_name": "OPML RSS",
         "feed_title": "Fish Audio(@FishAudio)",
@@ -476,7 +476,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "90ca3616-5acc-4d73-8a82-3abe5edcf1ee",
+        "source_record_id": "666d4463-873b-4098-b608-bbccb5bc5699",
         "site_id": "opmlrss:cb8a18f538",
         "site_name": "OPML RSS",
         "feed_title": "Geek(@geekbb)",
@@ -484,14 +484,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/9cb3b60e689e4445a7fbdfd0be144126",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30012,
+        "duration_ms": 30029,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "6564f6a3-9f6a-4b65-9f9b-07ffaa9cac22",
+        "source_record_id": "d4836cca-c0a7-43ea-9a62-62856cd7e8ae",
         "site_id": "opmlrss:8b77a9df5d",
         "site_name": "OPML RSS",
         "feed_title": "GitHub(@github)",
@@ -506,7 +506,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "9b55339d-b8ae-4dca-aea4-43a0bd33d538",
+        "source_record_id": "6970b738-b2ab-4516-bbf1-e517f902a9a4",
         "site_id": "opmlrss:080a366369",
         "site_name": "OPML RSS",
         "feed_title": "Google AI(@GoogleAI)",
@@ -514,14 +514,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/4de0bd2d5cef4333a0260dc8157054a7",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30023,
+        "duration_ms": 30024,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "03ce8762-68f0-4217-8c4c-829cfcc71f33",
+        "source_record_id": "002d1479-db56-4386-8867-0cf6c713feb9",
         "site_id": "opmlrss:8209909836",
         "site_name": "OPML RSS",
         "feed_title": "Google DeepMind(@GoogleDeepMind)",
@@ -529,14 +529,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/a99538443a484fcc846bdcc8f50745ec",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30023,
+        "duration_ms": 30024,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "03a941c3-2c76-4500-a8ea-db0321640e29",
+        "source_record_id": "c4b7a23a-efa6-40a1-9587-96e0627fc206",
         "site_id": "opmlrss:d3688717a0",
         "site_name": "OPML RSS",
         "feed_title": "Google Gemini App(@GeminiApp)",
@@ -551,7 +551,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "b0ee39a6-6c9f-42c3-9425-07bfcfbb2eeb",
+        "source_record_id": "2a793ff4-6067-4ffd-a6cf-b3519d92d10f",
         "site_id": "opmlrss:dfef75e176",
         "site_name": "OPML RSS",
         "feed_title": "Groq Inc(@GroqInc)",
@@ -566,7 +566,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "9cc646c1-0dda-4d88-9819-c6450d7b8076",
+        "source_record_id": "b89a63d5-f0e4-4f4c-b937-dc80ca74fe0e",
         "site_id": "opmlrss:322c46e7be",
         "site_name": "OPML RSS",
         "feed_title": "Hailuo AI (MiniMax)(@Hailuo_AI)",
@@ -574,14 +574,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/e65b5e59fcb544918c1ba17f5758f0f8",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30025,
+        "duration_ms": 30026,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "f911d68b-55bd-4892-a469-10d74c865fe7",
+        "source_record_id": "ea614162-2209-46d3-93f4-47b113b7f533",
         "site_id": "opmlrss:98a9dfc0bb",
         "site_name": "OPML RSS",
         "feed_title": "hidecloud(@hidecloud)",
@@ -589,14 +589,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/23d41992b29340788aa3d09d8364c5f5",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30013,
+        "duration_ms": 30030,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "5d6a1daf-d821-4212-867e-15d4ec19d4f0",
+        "source_record_id": "00ce38bf-e275-407b-ae38-6ec75b83a87d",
         "site_id": "opmlrss:a551fab1ae",
         "site_name": "OPML RSS",
         "feed_title": "Hugging Face(@huggingface)",
@@ -604,14 +604,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/fc16750ce50741f1b1f05ea1fb29436f",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30025,
+        "duration_ms": 30026,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "f644cafd-5162-42ae-8757-55dde4c1c05a",
+        "source_record_id": "31e3bb3e-f741-46a5-a202-fedd9be9c8bc",
         "site_id": "opmlrss:b128264a3c",
         "site_name": "OPML RSS",
         "feed_title": "Hunyuan(@TXhunyuan)",
@@ -619,14 +619,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/6e8e7b42cb434818810f87bcf77d86fb",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30016,
+        "duration_ms": 30033,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "58efb05c-de35-4a1a-b2bf-c68f28713901",
+        "source_record_id": "cdbdbf32-0a0a-4eb6-af2a-35003263c1bc",
         "site_id": "opmlrss:3d9ad1ed54",
         "site_name": "OPML RSS",
         "feed_title": "idoubi(@idoubicc)",
@@ -634,14 +634,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/3d72acd51d21414ea39871fc01982a65",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30011,
+        "duration_ms": 30028,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "714ba4be-f6ab-4f64-88ef-f36be861b36c",
+        "source_record_id": "0e768b25-2dce-43ce-b8d0-e85f59f5e4b0",
         "site_id": "opmlrss:1fa5e1fcff",
         "site_name": "OPML RSS",
         "feed_title": "Jerry Liu(@jerryjliu0)",
@@ -656,7 +656,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "741edd52-0768-4943-977f-d546586e9a6c",
+        "source_record_id": "3b16d47e-8ef8-42dc-ad91-de4ad8ae96bc",
         "site_id": "opmlrss:d699aa83a9",
         "site_name": "OPML RSS",
         "feed_title": "Jim Fan(@DrJimFan)",
@@ -671,7 +671,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "ef7ec860-af8c-446a-b45d-bb2746afa1ad",
+        "source_record_id": "8ceb04fc-aa7c-47a4-999f-d7416b359601",
         "site_id": "opmlrss:04ea9d34f9",
         "site_name": "OPML RSS",
         "feed_title": "Jina AI(@JinaAI_)",
@@ -686,7 +686,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "da93631e-ce72-42b6-bc66-37c6d8c0168f",
+        "source_record_id": "752520ee-ab75-4cc9-81d0-056851fb2b24",
         "site_id": "opmlrss:34cc2f9df9",
         "site_name": "OPML RSS",
         "feed_title": "Junyang Lin(@JustinLin610)",
@@ -694,14 +694,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/082097117b4543e9a741cd2580f936d3",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30024,
+        "duration_ms": 30025,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "8a7c9402-e901-4d91-accf-e7fba6dad521",
+        "source_record_id": "39775fcf-bf41-40a7-8e3a-bc243c5e78a2",
         "site_id": "opmlrss:3e97d49be4",
         "site_name": "OPML RSS",
         "feed_title": "Kling AI(@Kling_ai)",
@@ -709,14 +709,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/564237c3de274d58a04f064920817888",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30016,
+        "duration_ms": 30033,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "015db12f-b5b9-4699-b221-532ee097ba6f",
+        "source_record_id": "1c8b73d0-5068-4c08-9df1-6eb455b49021",
         "site_id": "opmlrss:35b0b22be2",
         "site_name": "OPML RSS",
         "feed_title": "LangChain(@LangChainAI)",
@@ -731,7 +731,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "3758ba67-55b4-4d46-9a37-d7275aee7c32",
+        "source_record_id": "f643d578-c89b-4944-9e5f-f112559160bd",
         "site_id": "opmlrss:5ef17a06f0",
         "site_name": "OPML RSS",
         "feed_title": "Lilian Weng(@lilianweng)",
@@ -746,7 +746,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "4a658a31-0dce-43ea-850f-1218ac196b4c",
+        "source_record_id": "c6e0dbdc-89b4-4f64-9850-fd63e107bfc6",
         "site_id": "opmlrss:9af2104d6a",
         "site_name": "OPML RSS",
         "feed_title": "LlamaIndex(@llama_index)",
@@ -754,14 +754,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/67e259bd5be544ce84bbc867eace54c2",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30019,
+        "duration_ms": 30020,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "679fdcd8-60fc-4c2e-8494-1bcd152531a5",
+        "source_record_id": "eba96080-8047-4271-b566-74c3c95cfcb7",
         "site_id": "opmlrss:4082b73ed8",
         "site_name": "OPML RSS",
         "feed_title": "meng shao(@shao__meng)",
@@ -769,34 +769,19 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/48aae530e0bf413aa7d44380f418e2e3",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30013,
+        "duration_ms": 30031,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "b229478f-9421-4d25-953a-37d6854e2c21",
+        "source_record_id": "9989ef1a-7374-4ef7-ad49-5455e7366bc7",
         "site_id": "opmlrss:80f996caa5",
         "site_name": "OPML RSS",
         "feed_title": "Microsoft Research(@MSFTResearch)",
         "feed_url": "https://api.xgo.ing/rss/user/61f4b78554fb4b8fa5653ec5d924d15a",
         "effective_feed_url": "https://api.xgo.ing/rss/user/61f4b78554fb4b8fa5653ec5d924d15a",
-        "ok": false,
-        "item_count": 0,
-        "duration_ms": 30023,
-        "error": "Request timed out after 30000ms",
-        "skipped": false,
-        "skip_reason": null,
-        "replaced": false
-      },
-      {
-        "source_record_id": "f17a0ee1-b739-42cd-b3a4-aa4fa8cb9050",
-        "site_id": "opmlrss:67b82d822d",
-        "site_name": "OPML RSS",
-        "feed_title": "Milvus(@milvusio)",
-        "feed_url": "https://api.xgo.ing/rss/user/424e67b19eed4500b7a440976bbd2ade",
-        "effective_feed_url": "https://api.xgo.ing/rss/user/424e67b19eed4500b7a440976bbd2ade",
         "ok": false,
         "item_count": 0,
         "duration_ms": 30024,
@@ -806,7 +791,22 @@
         "replaced": false
       },
       {
-        "source_record_id": "b0f55092-e959-464b-a8ad-6b6269c7d510",
+        "source_record_id": "8ac99bda-f340-471d-8acc-fd8a1f763781",
+        "site_id": "opmlrss:67b82d822d",
+        "site_name": "OPML RSS",
+        "feed_title": "Milvus(@milvusio)",
+        "feed_url": "https://api.xgo.ing/rss/user/424e67b19eed4500b7a440976bbd2ade",
+        "effective_feed_url": "https://api.xgo.ing/rss/user/424e67b19eed4500b7a440976bbd2ade",
+        "ok": false,
+        "item_count": 0,
+        "duration_ms": 30025,
+        "error": "Request timed out after 30000ms",
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false
+      },
+      {
+        "source_record_id": "c043562c-2e2d-4ca0-8d63-21c1baff1f54",
         "site_id": "opmlrss:7b1638bcdf",
         "site_name": "OPML RSS",
         "feed_title": "Monica_IM(@hey_im_monica)",
@@ -821,7 +821,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "73b57f54-aca9-4272-a046-e8db3623acdc",
+        "source_record_id": "8e4e3c84-c706-4c79-9f39-4a8faa63718e",
         "site_id": "opmlrss:e72fd828db",
         "site_name": "OPML RSS",
         "feed_title": "NotebookLM(@NotebookLM)",
@@ -836,7 +836,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "5be5f992-c7e2-4bfd-95a9-135eb4f6574c",
+        "source_record_id": "991d09a5-0104-43bf-b03e-d8bbf25f8a0b",
         "site_id": "opmlrss:6f2643df4a",
         "site_name": "OPML RSS",
         "feed_title": "Notion(@NotionHQ)",
@@ -851,7 +851,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "5083ccca-9e1c-4a46-b17d-8fc6bbc9cee4",
+        "source_record_id": "8163115c-3f07-4c33-a920-80bb61d5d66f",
         "site_id": "opmlrss:d744cf0135",
         "site_name": "OPML RSS",
         "feed_title": "NVIDIA AI(@NVIDIAAI)",
@@ -866,7 +866,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "21c5f7a7-e7fe-4c74-b991-4ca89dfbcfd8",
+        "source_record_id": "3a8d6465-2678-4f2d-acbe-fb025a57a78a",
         "site_id": "opmlrss:90e13743b4",
         "site_name": "OPML RSS",
         "feed_title": "ollama(@ollama)",
@@ -874,34 +874,19 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/6326c63a2dfa445bbde88bea0c3112c2",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30018,
+        "duration_ms": 30019,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "cbdf488b-eecc-40f6-a2c3-b62f1f20ca59",
+        "source_record_id": "e2374223-743a-4902-a4e1-f0d19796892d",
         "site_id": "opmlrss:f2fa3f5170",
         "site_name": "OPML RSS",
         "feed_title": "OpenAI Developers(@OpenAIDevs)",
         "feed_url": "https://api.xgo.ing/rss/user/971dc1fc90da449bac23e5fad8a33d55",
         "effective_feed_url": "https://api.xgo.ing/rss/user/971dc1fc90da449bac23e5fad8a33d55",
-        "ok": false,
-        "item_count": 0,
-        "duration_ms": 30023,
-        "error": "Request timed out after 30000ms",
-        "skipped": false,
-        "skip_reason": null,
-        "replaced": false
-      },
-      {
-        "source_record_id": "7de389dd-8389-4e3c-a624-bdb321a68796",
-        "site_id": "opmlrss:cf513f1496",
-        "site_name": "OPML RSS",
-        "feed_title": "OpenAI(@OpenAI)",
-        "feed_url": "https://api.xgo.ing/rss/user/0c0856a69f9f49cf961018c32a0b0049",
-        "effective_feed_url": "https://api.xgo.ing/rss/user/0c0856a69f9f49cf961018c32a0b0049",
         "ok": false,
         "item_count": 0,
         "duration_ms": 30024,
@@ -911,7 +896,22 @@
         "replaced": false
       },
       {
-        "source_record_id": "f78f33ff-ab1a-4e6f-93e7-c650f1bee88d",
+        "source_record_id": "3772023b-1f78-403e-b723-376aa3bc4708",
+        "site_id": "opmlrss:cf513f1496",
+        "site_name": "OPML RSS",
+        "feed_title": "OpenAI(@OpenAI)",
+        "feed_url": "https://api.xgo.ing/rss/user/0c0856a69f9f49cf961018c32a0b0049",
+        "effective_feed_url": "https://api.xgo.ing/rss/user/0c0856a69f9f49cf961018c32a0b0049",
+        "ok": false,
+        "item_count": 0,
+        "duration_ms": 30025,
+        "error": "Request timed out after 30000ms",
+        "skipped": false,
+        "skip_reason": null,
+        "replaced": false
+      },
+      {
+        "source_record_id": "86bd52ec-0157-4f02-a115-6bc781e3a6de",
         "site_id": "opmlrss:fd58f3bef6",
         "site_name": "OPML RSS",
         "feed_title": "OpenRouter(@OpenRouterAI)",
@@ -926,7 +926,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "85d86da5-4332-4510-b3a0-87c4405a677d",
+        "source_record_id": "61779ff6-bb2a-4404-b580-b5bb979342fd",
         "site_id": "opmlrss:32ec5aeb69",
         "site_name": "OPML RSS",
         "feed_title": "Qwen(@Alibaba_Qwen)",
@@ -934,14 +934,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/80032d016d654eb4afe741ff34b7643d",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30015,
+        "duration_ms": 30032,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "8f3241d5-1b6c-4e1b-a759-760db74294c3",
+        "source_record_id": "d5b5201b-97ad-4fec-8788-634f9884dfab",
         "site_id": "opmlrss:c3a8581e8c",
         "site_name": "OPML RSS",
         "feed_title": "Skywork(@Skywork_ai)",
@@ -949,14 +949,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/6d7d398dd80b48d79669c92745d32cf6",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30016,
+        "duration_ms": 30033,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "0f121e28-7a56-4848-9b65-f7dd49369e04",
+        "source_record_id": "9b6ad69b-7562-41a1-8a98-9838ae4e743b",
         "site_id": "opmlrss:bd51abfe71",
         "site_name": "OPML RSS",
         "feed_title": "Tw93(@HiTw93)",
@@ -964,14 +964,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/665fc88440fd4436acbc2e630d824926",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30012,
+        "duration_ms": 30029,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "536014e3-f27e-49c5-b1c7-f5d7ab27b843",
+        "source_record_id": "af18a629-e8fa-4e26-85f6-6f808c518832",
         "site_id": "opmlrss:105cece06b",
         "site_name": "OPML RSS",
         "feed_title": "Viking(@vikingmute)",
@@ -979,14 +979,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/aab44cb2665a49258cd81f63b0b55192",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30011,
+        "duration_ms": 30029,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "9bf2e2bc-f6cf-4e99-932a-53d211c53d1a",
+        "source_record_id": "0d2e76c5-deea-45fe-aae4-bef67342eda8",
         "site_id": "opmlrss:e69b283236",
         "site_name": "OPML RSS",
         "feed_title": "Windsurf(@windsurf_ai)",
@@ -1001,7 +1001,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "411b86e3-5672-4b4b-8c1a-9aa74002a4d8",
+        "source_record_id": "967383f4-331b-4121-80de-edebcdd73323",
         "site_id": "opmlrss:e2ea4e96db",
         "site_name": "OPML RSS",
         "feed_title": "xAI(@xai)",
@@ -1016,7 +1016,7 @@
         "replaced": false
       },
       {
-        "source_record_id": "a7ce58e4-190b-4a71-9220-2993117353fd",
+        "source_record_id": "c840ee91-e621-4125-bd82-47b07ff00e70",
         "site_id": "opmlrss:9a9a752b70",
         "site_name": "OPML RSS",
         "feed_title": "Yangyi(@Yangyixxxx)",
@@ -1024,14 +1024,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/66c40de71a9842fda4853b7d9d1d20da",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30012,
+        "duration_ms": 30030,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "cf4bfa92-ddce-4a84-9d4a-a5e28365b9fe",
+        "source_record_id": "33d965a8-cf94-4cf1-b4cb-c892058f4ee9",
         "site_id": "opmlrss:6c453f780c",
         "site_name": "OPML RSS",
         "feed_title": "向阳乔木(@vista8)",
@@ -1039,14 +1039,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/9de19c78f7454ad08c956c1a00d237fe",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30010,
+        "duration_ms": 30027,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "61a70153-b516-49aa-801d-07409bc0b618",
+        "source_record_id": "6888a55a-c737-4d2f-8175-e6d4382ee22f",
         "site_id": "opmlrss:1964c764e0",
         "site_name": "OPML RSS",
         "feed_title": "宝玉(@dotey)",
@@ -1054,14 +1054,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/97f1484ae48c430fbbf3438099743674",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30008,
+        "duration_ms": 30026,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "9af25f4d-ef8b-4173-9d69-7298badf41e5",
+        "source_record_id": "442abd51-53e5-4335-beed-f9233c0b1848",
         "site_id": "opmlrss:2ee3633629",
         "site_name": "OPML RSS",
         "feed_title": "小互(@imxiaohu)",
@@ -1069,14 +1069,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/74e542992cf7441390c708f5601071d4",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30009,
+        "duration_ms": 30027,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "00f3c654-251f-4d76-a96e-0a4b947fe681",
+        "source_record_id": "8366329b-7959-481b-8b1a-63012fbb0d31",
         "site_id": "opmlrss:30f23a4056",
         "site_name": "OPML RSS",
         "feed_title": "李继刚(@lijigang_com)",
@@ -1084,14 +1084,14 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/ca2fa444b6ea4b8b974fe148056e497a",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30007,
+        "duration_ms": 30025,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
         "replaced": false
       },
       {
-        "source_record_id": "5587fdf4-6f95-4129-a990-bea01159820b",
+        "source_record_id": "bcfe1a26-12eb-4798-85c5-9dc20c85937e",
         "site_id": "opmlrss:3ebe098b86",
         "site_name": "OPML RSS",
         "feed_title": "歸藏(guizang.ai)(@op7418)",
@@ -1099,7 +1099,7 @@
         "effective_feed_url": "https://api.xgo.ing/rss/user/831fac36aa0a49a9af79f35dc1c9b5d9",
         "ok": false,
         "item_count": 0,
-        "duration_ms": 30009,
+        "duration_ms": 30026,
         "error": "Request timed out after 30000ms",
         "skipped": false,
         "skip_reason": null,
